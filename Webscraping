@@ -1,0 +1,58 @@
+# pip install requests (to be able to get HTML pages and load them into Python)
+# pip install bs4 (for beautifulsoup - python tool to parse HTML)
+
+
+
+
+from urllib.request import urlopen
+from bs4 import BeautifulSoup
+
+
+# look at:
+# www.bloomberg.com/robots.txt
+# www.facebook.com/robots.txt
+# www.wikipedia.com/robots.txt
+
+
+
+
+webpage = 'https://www.nasdaq.com/quotes/real-time.aspx'
+
+
+page = urlopen(webpage) #loads a webpage into a python object
+
+soup = BeautifulSoup(page, 'html.parser')
+
+
+
+#SOME USEFUL FUNCTIONS IN BEAUTIFULSOUP
+#-----------------------------------------------#
+# find(tag, attributes, recursive, text, keywords)
+# findAll(tag, attributes, recursive, text, limit, keywords)
+
+#Tags: find("h1","h2","h3", etc.)
+#Attributes: find("span", {"class":{"green","red"}})
+#Text: nameList = Objfind(text="the prince")
+#Limit = find with limit of 1
+#keyword: allText = Obj.find(id="title",class="text")
+
+
+
+headers = soup.findAll("div", attrs = {"class": "coName small"})
+
+print(headers)
+
+
+
+
+
+
+
+##EXERCISE: Can you iterate through each "div" to display the text only?
+
+
+
+
+
+
+
